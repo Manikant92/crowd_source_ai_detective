@@ -468,4 +468,5 @@ Security best practices:
 - [Portia GitHub Repository](https://github.com/portiaAI/portia-sdk-python)
 - [AI Detective System Architecture](../docs/system_architecture.md)
 - [Portia SDK Analysis](../docs/portia_sdk_analysis.md)
+- [ChatGPT](https://chatgpt.com/) 
 
