@@ -1,0 +1,21 @@
+CREATE TABLE audit_logs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    entity_id UUID NOT NULL,
+    entity_type VARCHAR(20) NOT NULL CHECK (entity_type IN ('claim',
+    'verification',
+    'user',
+    'source')),
+    action_type VARCHAR(30) NOT NULL CHECK (action_type IN ('created',
+    'updated',
+    'deleted',
+    'verified',
+    'flagged',
+    'moderated')),
+    previous_state JSONB,
+    new_state JSONB,
+    actor_id UUID,
+    blockchain_hash VARCHAR(64),
+    action_metadata JSONB,
+    is_system_action BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);

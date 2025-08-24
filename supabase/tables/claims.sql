@@ -1,0 +1,23 @@
+CREATE TABLE claims (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    submitter_id UUID NOT NULL,
+    claim_text TEXT NOT NULL,
+    claim_type VARCHAR(20) DEFAULT 'text' CHECK (claim_type IN ('text',
+    'image',
+    'video',
+    'url',
+    'mixed')),
+    claim_metadata JSONB,
+    reliability_score DECIMAL(4,3) DEFAULT NULL CHECK (reliability_score >= 0.0 AND reliability_score <= 1.0),
+    status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending',
+    'processing',
+    'completed',
+    'disputed',
+    'archived')),
+    submitted_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    source_urls JSONB,
+    is_trending BOOLEAN DEFAULT FALSE,
+    verification_count INTEGER DEFAULT 0 CHECK (verification_count >= 0),
+    tags JSONB
+);

@@ -1,0 +1,20 @@
+CREATE TABLE ai_agents (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    agent_name VARCHAR(100) NOT NULL,
+    agent_type VARCHAR(50) NOT NULL CHECK (agent_type IN ('orchestrator',
+    'claim_detector',
+    'content_analyzer',
+    'fact_checker',
+    'source_validator',
+    'cross_referencer',
+    'reliability_scorer',
+    'consensus_analyzer')),
+    status VARCHAR(20) DEFAULT 'active' CHECK (status IN ('active',
+    'inactive',
+    'maintenance',
+    'error')),
+    last_heartbeat TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    configuration JSONB,
+    performance_metrics JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);

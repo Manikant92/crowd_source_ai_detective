@@ -1,0 +1,21 @@
+CREATE TABLE verifications (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    claim_id UUID NOT NULL,
+    verifier_id UUID NOT NULL,
+    verification_type VARCHAR(20) NOT NULL CHECK (verification_type IN ('human',
+    'ai_agent',
+    'expert',
+    'community')),
+    verdict VARCHAR(20) NOT NULL CHECK (verdict IN ('true',
+    'false',
+    'mixed',
+    'unverified',
+    'misleading')),
+    confidence_score DECIMAL(4,3) NOT NULL CHECK (confidence_score >= 0.0 AND confidence_score <= 1.0),
+    justification TEXT,
+    evidence_links JSONB,
+    verified_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    upvotes INTEGER DEFAULT 0 CHECK (upvotes >= 0),
+    downvotes INTEGER DEFAULT 0 CHECK (downvotes >= 0),
+    is_consensus BOOLEAN DEFAULT FALSE
+);

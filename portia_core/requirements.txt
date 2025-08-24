@@ -1,0 +1,39 @@
+# Portia SDK Core Dependencies for AI Detective Application
+
+# Core Portia SDK
+portia-ai>=1.0.0
+
+# Async support and utilities  
+asyncio
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# Logging and monitoring
+structlog>=23.0.0
+
+# Optional LLM provider dependencies
+openai>=1.0.0
+anthropic>=0.25.0
+google-generativeai>=0.5.0
+mistralai>=0.4.0
+
+# Azure OpenAI (optional)
+azure-openai>=1.0.0
+
+# AWS Bedrock (optional)
+boto3>=1.34.0
+
+# Database and caching (for production use)
+asyncpg>=0.29.0  # PostgreSQL async driver
+redis>=5.0.0     # Redis for state management
+kafka-python>=2.0.2  # Kafka for event streaming
+
+# Web scraping and content analysis
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+
+# Additional utilities
+httpx>=0.27.0    # HTTP client with async support
+aiohttp>=3.9.0   # Alternative async HTTP client
+tenacity>=8.2.0  # Retry mechanisms

@@ -1,0 +1,20 @@
+CREATE TABLE agent_workflows (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    claim_id UUID NOT NULL,
+    agent_id UUID NOT NULL,
+    workflow_id VARCHAR(100) NOT NULL,
+    step_name VARCHAR(100) NOT NULL,
+    step_index INTEGER NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending',
+    'running',
+    'completed',
+    'failed',
+    'skipped')),
+    input_data JSONB,
+    output_data JSONB,
+    processing_time_ms INTEGER,
+    error_message TEXT,
+    started_at TIMESTAMP WITH TIME ZONE,
+    completed_at TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
